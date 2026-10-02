@@ -1,4 +1,4 @@
-#!/bin/zsh
+#!/bin/bash
 
 if [ $# -lt 4 ]; then
     echo "Ei tarpeeksi argumentteja. Tämä skripti vaatii jonkin skriptin, joka palauttaa jonkin load average arvon. Käyttöohje: $0 10 2 ./load.sh 1" 1>&2
@@ -12,12 +12,9 @@ prog=$3
 # Tämä hylkää ensimmäiset kolme argumenttia
 shift 3
 
-while true
+for i in $(seq 1 $points);
 do
-    for i in $(seq 1 $points);
-    do
-	echo "$(date +%s) $(eval $prog $@)"
-    done
+    echo "$(date +%s) $(eval $prog $@)"
 
     sleep $how_often
 done
